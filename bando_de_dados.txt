@@ -1,0 +1,4 @@
+yan;yan@e;1111;ADMIN
+yan;invalido@sistema.com;yan@u;COMUM
+Bruce;invalido@sistema.com;teste@t;ADMIN
+Bruce Wayne;Bruce@t;1234;ADMIN

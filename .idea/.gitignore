@@ -1,0 +1,17 @@
+
+/shelf/
+/workspace.xml
+
+/httpRequests/
+
+/queries/
+
+/dataSources/
+/dataSources.local.xml
+
+out/
+&.class
+*.iml
+
+
+bando_de_dados.txt
