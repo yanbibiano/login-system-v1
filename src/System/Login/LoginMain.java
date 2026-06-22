@@ -8,6 +8,10 @@ public class LoginMain {
         GerenciadorLogin sistema = new GerenciadorLogin();
         boolean servidorRodando = true;
 
+        System.out.println("Tentando conectar ao MySQL...");
+        java.sql.Connection conexaoTeste = FabricaConexao.obterConexao();
+        System.out.println("Conexão estabelecida com sucesso absoluto!");
+
         System.out.println("Bem-vindo ao Sistema de Gestão V1.0");
 
         while (servidorRodando) {
