@@ -28,6 +28,11 @@ public class LoginMain {
                     System.out.println("Digite a senha: ");
                     String senhaCadastro = scanner.nextLine();
 
+                    if (senhaCadastro.length() < 8) {
+                        System.out.println("A senha deve ter no mínimo 8 caracteres");
+                        break;
+                    }
+
                     boolean cadastrou = usuarioDAO.cadastroUsuario(nome, emailCadastro, senhaCadastro);
 
                     if (cadastrou) {
