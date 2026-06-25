@@ -49,6 +49,47 @@ public class UsuarioDAO {
             return false;
         }
     }
+
+    public String buscarNomePorEmail (String email) {
+        String sql = "SELECT nome FROM usuarios WHERE email = ?";
+
+        try (Connection conexao = FabricaConexao.obterConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, email);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("nome");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar nome no banco: " + e.getMessage());
+        }
+        return "Usuário";
+    }
+
+    public boolean alterarSenha(String email, String novaSenha) {
+        String sql = "UPDATE usuarios SET senha = ? WHERE email = ?";
+
+        String novaSenhaMascarada = gerarHashSHA256(novaSenha);
+
+        try (Connection conexao = FabricaConexao.obterConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setString(1, novaSenhaMascarada);
+            stmt.setString(2, email);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao alterar senha no banco: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+
+
     private String gerarHashSHA256(String texto) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
